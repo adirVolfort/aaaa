@@ -138,15 +138,59 @@
 
   /* Skill bars */
   .skills .row{ display:grid; grid-template-columns: 140px 1fr; gap:14px; align-items:center; margin:10px 0; }
+  /* ===== Skill bars with cinematic glow ===== */
   .pill{
-    height:9px; background:#0b1113; border-radius:999px; position:relative; outline:1px solid #1a2a2f;
+    position:relative;
+    height:10px;
+    background:#0b1113;            /* מסילת רקע */
+    border-radius:999px;
+    outline:1px solid #1a2a2f;      /* קו עדין */
+    overflow:visible;               /* כדי שההילה תצא החוצה */
+    box-shadow:inset 0 0 6px rgba(255,255,255,0.06);
   }
-  .pill > i{
-    position:absolute; inset:0; border-radius:inherit;
+  .pill::after{                      /* היילייט זכוכיתי עליון */
+    content:"";
+    position:absolute; left:1px; right:1px; top:1px; height:40%;
+    border-radius:999px;
+    background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+    pointer-events:none;
+  }
+  .pill .fill{
+    position:relative;
+    height:100%;
+    border-radius:999px;
+    transition:width .6s ease;
+    /* צבע דיפולטי – כתום */
+    background:linear-gradient(90deg,#ff8a3d 0%, #ffb174 100%);
+    box-shadow:
+      inset 0 0 6px rgba(255,255,255,.18),
+      0 0 12px rgba(255,138,61,.55),   /* glow קרוב */
+      0 0 26px rgba(255,138,61,.30);   /* glow רחוק */
+  }
+  .pill .fill::before{               /* הילה לכל האורך */
+    content:"";
+    position:absolute; inset:-8px -12px;
     background:
-      linear-gradient(90deg, var(--orange), var(--orange)) left/var(--w) 100% no-repeat,
-      linear-gradient(90deg, rgba(255,255,255,.15), transparent);
-    box-shadow: inset 0 0 10px rgba(255,138,61,.35), 0 0 18px rgba(255,138,61,.25);
+      radial-gradient(60% 80% at left center, rgba(255,138,61,.50), transparent 70%),
+      radial-gradient(60% 80% at right center, rgba(255,138,61,.45), transparent 70%);
+    filter: blur(6px);
+    border-radius:999px;
+    pointer-events:none;
+    z-index:-1;
+  }
+
+  /* וריאציה טורקיז לצד הימני (Software) */
+  #skills-soft .fill{
+    background:linear-gradient(90deg,#27e0c0 0%, #17b7aa 100%);
+    box-shadow:
+      inset 0 0 6px rgba(255,255,255,.18),
+      0 0 12px rgba(39,224,192,.55),
+      0 0 26px rgba(39,224,192,.30);
+  }
+  #skills-soft .fill::before{
+    background:
+      radial-gradient(60% 80% at left center, rgba(39,224,192,.50), transparent 70%),
+      radial-gradient(60% 80% at right center, rgba(39,224,192,.45), transparent 70%);
   }
 
   /* Hobbies / Languages / Contacts */
@@ -409,9 +453,12 @@
 
   // Skills
   const makeRow = (name, level) => {
-    const wrap = document.createElement('div'); wrap.className='row';
-    wrap.innerHTML = `<div class="label">${name}</div>
-      <div class="pill"><i style="--w:${Math.max(0, Math.min(level,100))}%;"></i></div>`;
+    const wrap = document.createElement('div'); 
+    wrap.className = 'row';
+    const safe = Math.max(0, Math.min(level, 100));
+    wrap.innerHTML = `
+      <div class="label">${name}</div>
+      <div class="pill"><div class="fill" style="width:${safe}%;"></div></div>`;
     return wrap;
   };
   const sp = document.getElementById('skills-prof');
