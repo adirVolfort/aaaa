@@ -142,44 +142,39 @@
   .pill{
     position:relative;
     height:10px;
-    background:#0b1113;            /* מסילת רקע */
+    background:#0b1113;
     border-radius:999px;
-    outline:1px solid #1a2a2f;      /* קו עדין */
-    overflow:visible;               /* כדי שההילה תצא החוצה */
+    outline:1px solid #1a2a2f;
+    overflow:visible;         /* חשוב כדי שההילה תצא החוצה */
+    z-index:0;                /* יוצר הקשר תקין */
     box-shadow:inset 0 0 6px rgba(255,255,255,0.06);
-  }
-  .pill::after{                      /* היילייט זכוכיתי עליון */
-    content:"";
-    position:absolute; left:1px; right:1px; top:1px; height:40%;
-    border-radius:999px;
-    background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
-    pointer-events:none;
   }
   .pill .fill{
     position:relative;
+    z-index:2;                /* מעל ההילה */
     height:100%;
     border-radius:999px;
     transition:width .6s ease;
-    /* צבע דיפולטי – כתום */
     background:linear-gradient(90deg,#ff8a3d 0%, #ffb174 100%);
     box-shadow:
       inset 0 0 6px rgba(255,255,255,.18),
-      0 0 12px rgba(255,138,61,.55),   /* glow קרוב */
-      0 0 26px rgba(255,138,61,.30);   /* glow רחוק */
+      0 0 12px rgba(255,138,61,.55),
+      0 0 26px rgba(255,138,61,.30);
   }
-  .pill .fill::before{               /* הילה לכל האורך */
+  .pill .fill::before{
     content:"";
     position:absolute; inset:-8px -12px;
-    background:
-      radial-gradient(60% 80% at left center, rgba(255,138,61,.50), transparent 70%),
-      radial-gradient(60% 80% at right center, rgba(255,138,61,.45), transparent 70%);
-    filter: blur(6px);
     border-radius:999px;
+    /* אותו רקע הילה כמו קודם */
+    background:
+      radial-gradient(60% 80% at left center, rgba(255,138,61,.50), transparent 40%),
+      radial-gradient(60% 80% at right center, rgba(255,138,61,.45), transparent 40%);
+    filter: blur(6px);
+    z-index:1;                /* כבר לא שלילי */
     pointer-events:none;
-    z-index:-1;
   }
 
-  /* וריאציה טורקיז לצד הימני (Software) */
+  /* וריאציה טורקיז לעמודת ה-Software */
   #skills-soft .fill{
     background:linear-gradient(90deg,#27e0c0 0%, #17b7aa 100%);
     box-shadow:
@@ -189,8 +184,8 @@
   }
   #skills-soft .fill::before{
     background:
-      radial-gradient(60% 80% at left center, rgba(39,224,192,.50), transparent 70%),
-      radial-gradient(60% 80% at right center, rgba(39,224,192,.45), transparent 70%);
+      radial-gradient(60% 80% at left center, rgba(39,224,192,.50), transparent 40%),
+      radial-gradient(60% 80% at right center, rgba(39,224,192,.45), transparent 40%);
   }
 
   /* Hobbies / Languages / Contacts */
