@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Adir Assaf Elad — Resume</title>
+<title>אדיר אסף אלעד — קורות חיים</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 <style>
@@ -273,8 +273,23 @@ h2 .bar{
     radial-gradient(60% 80% at right center, rgba(39,224,192,.45), transparent 70%);
 }
 
+/* PATCH RTL */
+/* ==== RTL tweaks (patch) ==== */
+[dir="rtl"] .header{ grid-template-columns: 160px 1fr; text-align:right }
+[dir="rtl"] .photo{ grid-column:1;  justify-self:end }
+[dir="rtl"] .card, [dir="rtl"] .about p, [dir="rtl"] .title h1, [dir="rtl"] .subtitle, [dir="rtl"] .quick{ text-align:right }
+[dir="rtl"] .item{ grid-template-columns: auto 1fr }
+[dir="rtl"] .skills .row{ grid-template-columns: 1fr 140px }
+[dir="rtl"] .skills .row .label{ text-align:right }
+[dir="rtl"] .btn-download{ left:24px; right:auto }
+
+[dir="rtl"] .title{ grid-column:2; }
+
 /* PATCH */
  
+
+/* PATCH RTL align */
+[dir="rtl"] .item .meta{ text-align:left }
 
 /* PATCH: lang switch */
 /* === language switch === */
@@ -291,7 +306,7 @@ h2 .bar{
 .lang-switch .btn-flag.active{ border-color:#27e0c0; box-shadow:0 0 0 3px rgba(39,224,192,.15) }
 
 /* fix: prevent PDF button overlap */
-body { padding-bottom: 100px; }
+body { padding-bottom: 1000px; }
 
 /* fix: safe space for Download PDF button */
 .ref{ margin-bottom: 128px; }            /* push content up inside the sheet */
@@ -333,25 +348,25 @@ body { padding-bottom: 100px; }
       </div>
     </div>
   <nav class="lang-switch" aria-label="Language">
-  <a class="btn-flag en active" href="cv.html" title="English">🇺🇸 English</a>
-  <a class="btn-flag he" href="cv_he.html" title="עברית">🇮🇱 עברית</a>
+  <a class="btn-flag en" href="cv.html" title="English">🇺🇸 English</a>
+  <a class="btn-flag he active" href="cv_he.html" title="עברית">🇮🇱 עברית</a>
 </nav></header>
 
   <section class="grid">
     <!-- LEFT -->
     <div class="col">
       <article class="card about">
-        <h2>About Me <span class="bar"></span></h2>
+        <h2>עליי <span class="bar"></span></h2>
         <p id="about"></p>
       </article>
 
       <article class="card">
-        <h2>Experience <span class="bar"></span></h2>
+        <h2>ניסיון <span class="bar"></span></h2>
         <div id="experience"></div>
       </article>
 
       <article class="card">
-        <h2>Hobbies <span class="bar"></span></h2>
+        <h2>תחביבים <span class="bar"></span></h2>
         <div class="tags" id="hobbies"></div>
       </article>
     </div>
@@ -359,28 +374,28 @@ body { padding-bottom: 100px; }
     <!-- RIGHT -->
     <div class="col">
       <article class="card">
-        <h2>Education <span class="bar"></span></h2>
+        <h2>השכלה <span class="bar"></span></h2>
         <div id="education"></div>
       </article>
 
       <article class="card skills split">
         <div>
-          <h2>Skills — Professional <span class="bar"></span></h2>
+          <h2>מיומנויות — מקצועיות <span class="bar"></span></h2>
           <div id="skills-prof"></div>
         </div>
         <div>
-          <h2>Skills — Software <span class="bar"></span></h2>
+          <h2>מיומנויות — תוכנה <span class="bar"></span></h2>
           <div id="skills-soft"></div>
         </div>
       </article>
 
       <article class="card">
-        <h2>Languages <span class="bar"></span></h2>
+        <h2>שפות <span class="bar"></span></h2>
         <div id="languages"></div>
       </article>
 
       <article class="card contacts">
-        <h2>Contacts <span class="bar"></span></h2>
+        <h2>יצירת קשר <span class="bar"></span></h2>
         <div class="tags" id="social"></div>
       </article>
     </div>
@@ -388,15 +403,15 @@ body { padding-bottom: 100px; }
 
   <section class="ref">
     <div>
-      <strong>References</strong><br/>
+      <strong>ממליצים</strong><br/>
       <span id="references"></span>
     </div>
-    <div class="note">Curious about my work? I’m just a call away!</div>
+    <div class="note">מתעניינים בעשייה שלי? דברו איתי!</div>
   </section>
 </main>
 
 <!-- ============ DATA (EDIT THIS JSON) ============ -->
-<script type="application/json" id="resume-data">{"photo":"me.jpg","name":{"first":"Adir","last":"Assaf Elad"},"headline":["Software Engineer","Designer"],"phone":"054-7471112","email":"adir@volfort.com","location":{"current":"Jerusalem","relocatingTo":"Eilat"},"about":"Self-taught, systems-minded software engineer & designer with 20+ years of hands-on work, starting at age 16. I learn new stacks extremely fast and love building end-to-end — client/server, Windows, Linux and the web. Hacker mindset: automate everything, choose the simplest path that works, and ship.","experience":[{"company":"Volfort","location":"Ramat Gan","role":"Founder, Lead Developer & Manager","start":"2005","years":"2005 — Present","bullets":["Built and operated the company end-to-end: clients, servers, product, marketing and support.","Developed advanced software in C#, C++, Python and JavaScript; Windows apps (WPF/XAML), IPC (pipes), web backends & frontends.","Created an HFT trading robot for US futures & equities; production deployment and operations.","Integrated ML models (Python/C#) for real-time decisions; extensive automation with AHK and Lua (OBS scripting)."]},{"company":"NGL","location":"Ramat Gan","role":"Head of Development","years":"2018 — 2020","bullets":["Led a team of engineers; defined workflows, versioning and delivery with Git.","Rapidly adopted new languages and libraries as needed to execute projects."]}],"education":[{"school":"Self-directed learning","degree":"Full-stack Software Engineering (project-based)","years":"Continuous"}],"skills":{"professional":[{"name":"System Design","level":88},{"name":"Architecture & Planning","level":86},{"name":"Creative Problem Solving","level":92},{"name":"Team Leadership","level":80},{"name":"Automation & Optimization","level":94},{"name":"AI/ML Integration","level":78}],"software":[{"name":"C# / .NET / ASP.NET Core","level":95},{"name":"WPF / XAML","level":95},{"name":"C++","level":82},{"name":"Python (TensorFlow, scikit-learn)","level":88},{"name":"JavaScript","level":86},{"name":"TypeScript","level":75},{"name":"React","level":75},{"name":"PHP","level":70},{"name":"HTML / CSS / jQuery / Node.js","level":92},{"name":"SQL / MySQL / Compact SQL","level":92},{"name":"AutoHotkey (AHK)","level":90},{"name":"Lua","level":60},{"name":"MATLAB / Azure ML Studio","level":60},{"name":"Git / CI-CD","level":80}]},"languages":[{"name":"Hebrew","level":"Native"},{"name":"English","level":"Fluent"}],"social":[{"handle":"TUDI.co.il","label":"Website","icon":"🌐","url":"http://tudi.co.il"},{"handle":"WhatsApp","label":"WhatsApp","icon":"🟢","url":"https://wa.me/972547471112"},{"handle":"Call","label":"Call","icon":"📞","url":"tel:+972547471112"}],"references":["Adir Assaf Elad — CEO, Volfort — dedicated, creative and reliable"],"hobbies":["Photography","Music","Basketball","Content Creating","Vibe Coding"]}</script>
+<script type="application/json" id="resume-data">{"photo":"me.jpg","name":{"first":"אדיר","last":"אסף אלעד"},"headline":["מהנדס תוכנה","דיזיינר"],"phone":"054-7471112","email":"adir@volfort.com","location":{"current":"ירושלים","relocatingTo":"אילת"},"about":"מהנדס תוכנה ומעצב עם 20+ שנות ניסיון, מאז גיל 16. לומד טכנולוגיות במהירות ובונה מקצה-לקצה — לקוח/שרת, Windows, Linux והווב. מיינדסט של האקר: אוטומיזציה להכול, לבחור את הדרך האלגנטית והיעילה, ולשחרר לפרודקשן.","experience":[{"company":"Volfort","location":"רמת גן","role":"מייסד, ראש פיתוח ומנהל","years":"2005 — הווה","bullets":["הקמה ותפעול מקצה-לקצה: לקוחות, שרתים, מוצר, שיווק ותמיכה.","פיתוח מערכות מתקדמות ב-C#, ‏C++, ‏Python ו-JavaScript; אפליקציות Windows ‏(WPF/XAML), תקשורת IPC ‏(pipes), בקאנד ופרונטאנד לווב.","בניית רובוט מסחר HFT לחוזים עתידיים ומניות בארה״ב; פריסה ותפעול בפרודקשן.","שילוב מודלי ML ‏(Python/C#) להחלטות בזמן אמת; אוטומציות נרחבות עם ‎AHK ו-Lua ‏(OBS)."]},{"company":"NGL","location":"רמת גן","role":"ראש צוות פיתוח","years":"2018 — 2020","bullets":["ניהול צוות; הגדרת וורקפלואים, גרסאות ודלוורי עם Git.","אימוץ מהיר של שפות וספריות לפי צורך לביצוע פרויקטים."]}],"education":[{"school":"למידה עצמית מונחית-פרויקטים","degree":"הנדסת תוכנה פול-סטאק","years":"רציף"}],"skills":{"professional":[{"name":"תכנון מערכות","level":88},{"name":"ארכיטקטורה ותכנון","level":86},{"name":"פתרון בעיות יצירתי","level":92},{"name":"הובלת צוות","level":80},{"name":"אוטומציה ואופטימיזציה","level":94},{"name":"אינטגרציית AI/ML","level":78}],"software":[{"name":"C# / .NET / ASP.NET Core","level":95},{"name":"WPF / XAML","level":95},{"name":"C++","level":82},{"name":"Python (TensorFlow, scikit-learn)","level":88},{"name":"JavaScript","level":86},{"name":"TypeScript","level":75},{"name":"React","level":75},{"name":"PHP","level":70},{"name":"HTML / CSS / jQuery / Node.js","level":92},{"name":"SQL / MySQL / Compact SQL","level":92},{"name":"AutoHotkey (AHK)","level":90},{"name":"Lua","level":60},{"name":"MATLAB / Azure ML Studio","level":60},{"name":"Git / CI-CD","level":80}]},"languages":[{"name":"עברית","level":"שפת אם"},{"name":"אנגלית","level":"שוטפת"}],"social":[{"handle":"TUDI.co.il","label":"אתר","icon":"🌐","url":"http://tudi.co.il"},{"handle":"וואטסאפ","label":"וואטסאפ","icon":"🟢","url":"https://wa.me/972547471112"},{"handle":"התקשר","label":"התקשר","icon":"📞","url":"tel:+972547471112"}],"references":["Adir Assaf Elad — CEO, Volfort — dedicated, creative and reliable"],"hobbies":["צילום","מוזיקה","כדורסל","יצירת תוכן","וייב קודינג"]}</script>
 
 <!-- ============ RENDERER (no changes needed) ============ -->
 <script>
@@ -418,7 +433,7 @@ body { padding-bottom: 100px; }
   document.getElementById('phone').textContent = data.phone || "";
   document.getElementById('email').textContent = data.email || "";
   const loc = data.location ? (data.location.relocatingTo
-    ? `${data.location.current} → Relocating to ${data.location.relocatingTo}`
+    ? `${data.location.current} ← עובר ל${data.location.relocatingTo}`
     : data.location.current) : "";
   document.getElementById('location').textContent = loc;
 
@@ -495,7 +510,7 @@ body { padding-bottom: 100px; }
 })();
 </script>
 
-<a class="btn-download" href="#" onclick="window.print();return false;">Download PDF
+<a class="btn-download" href="#" onclick="window.print();return false;">הורדת PDF
 </a><style>
 .btn-download{
   position:fixed; right:24px; bottom:24px; z-index:9999;
@@ -506,8 +521,23 @@ body { padding-bottom: 100px; }
 }
 @media print{ .btn-download{ display:none } }
 
+/* PATCH RTL */
+/* ==== RTL tweaks (patch) ==== */
+[dir="rtl"] .header{ grid-template-columns: 160px 1fr; text-align:right }
+[dir="rtl"] .photo{ grid-column:1;  justify-self:end }
+[dir="rtl"] .card, [dir="rtl"] .about p, [dir="rtl"] .title h1, [dir="rtl"] .subtitle, [dir="rtl"] .quick{ text-align:right }
+[dir="rtl"] .item{ grid-template-columns: auto 1fr }
+[dir="rtl"] .skills .row{ grid-template-columns: 1fr 140px }
+[dir="rtl"] .skills .row .label{ text-align:right }
+[dir="rtl"] .btn-download{ left:24px; right:auto }
+
+[dir="rtl"] .title{ grid-column:2; }
+
 /* PATCH */
  
+
+/* PATCH RTL align */
+[dir="rtl"] .item .meta{ text-align:left }
 
 /* PATCH: lang switch */
 /* === language switch === */
@@ -629,6 +659,12 @@ body { padding-bottom: 100px; }
 </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
